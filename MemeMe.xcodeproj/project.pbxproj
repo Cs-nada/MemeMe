@@ -12,6 +12,7 @@
 		22304A0321B33AEB00DA2695 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22304A0121B33AEB00DA2695 /* Main.storyboard */; };
 		22304A0521B33AEE00DA2695 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22304A0421B33AEE00DA2695 /* Assets.xcassets */; };
 		22304A0821B33AEE00DA2695 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22304A0621B33AEE00DA2695 /* LaunchScreen.storyboard */; };
+		22304A1021B57BC300DA2695 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22304A0F21B57BC300DA2695 /* Meme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		22304A0421B33AEE00DA2695 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22304A0721B33AEE00DA2695 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22304A0921B33AEE00DA2695 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22304A0F21B57BC300DA2695 /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				22304A0421B33AEE00DA2695 /* Assets.xcassets */,
 				22304A0621B33AEE00DA2695 /* LaunchScreen.storyboard */,
 				22304A0921B33AEE00DA2695 /* Info.plist */,
+				22304A0F21B57BC300DA2695 /* Meme.swift */,
 			);
 			path = MemeMe;
 			sourceTree = "<group>";
@@ -136,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22304A0021B33AEB00DA2695 /* ViewController.swift in Sources */,
+				22304A1021B57BC300DA2695 /* Meme.swift in Sources */,
 				223049FE21B33AEB00DA2695 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,7 +287,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 694LAYWKJN;
 				INFOPLIST_FILE = MemeMe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,7 +306,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 694LAYWKJN;
 				INFOPLIST_FILE = MemeMe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
