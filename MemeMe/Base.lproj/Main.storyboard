@@ -40,22 +40,13 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rOY-zY-sgO">
-                                <rect key="frame" x="380" y="78" width="8" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="2Ta-du-rnI"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                            </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nOb-Wp-MaI" userLabel="toolBar">
                                 <rect key="frame" x="0.0" y="20" width="768" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="fJv-ck-TbD"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="Share" id="Gii-Qe-gzT">
+                                    <barButtonItem systemItem="action" id="Gii-Qe-gzT">
                                         <connections>
                                             <action selector="shareActionWithSender:" destination="BYZ-38-t0r" id="BxJ-MC-Ybp"/>
                                         </connections>
@@ -68,11 +59,21 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rRt-Hk-R5K">
-                                <rect key="frame" x="380" y="886" width="8" height="80"/>
+                            <textField opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="rRt-Hk-R5K">
+                                <rect key="frame" x="29" y="886" width="710" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="nhG-hC-cCR"/>
                                 </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="rOY-zY-sgO">
+                                <rect key="frame" x="29" y="78" width="710" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="2Ta-du-rnI"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="zOA-eB-Jga"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
@@ -89,18 +90,22 @@
                             <constraint firstItem="F4G-DL-Jhk" firstAttribute="top" secondItem="rRt-Hk-R5K" secondAttribute="bottom" constant="14" id="Q7S-hC-8Xa"/>
                             <constraint firstItem="rOY-zY-sgO" firstAttribute="top" secondItem="nOb-Wp-MaI" secondAttribute="bottom" constant="14" id="QDy-fQ-VFi"/>
                             <constraint firstItem="nOb-Wp-MaI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="StL-Ky-y1x"/>
-                            <constraint firstItem="rRt-Hk-R5K" firstAttribute="leading" secondItem="rOY-zY-sgO" secondAttribute="leading" id="YjK-gL-ZU9"/>
                             <constraint firstAttribute="trailing" secondItem="nOb-Wp-MaI" secondAttribute="trailing" id="aAI-ZY-umA"/>
                             <constraint firstItem="rOY-zY-sgO" firstAttribute="centerX" secondItem="e5N-Mj-6CG" secondAttribute="centerX" id="b1m-Lj-RSW"/>
                             <constraint firstItem="e5N-Mj-6CG" firstAttribute="leading" secondItem="F4G-DL-Jhk" secondAttribute="leading" id="cS2-V2-hYJ"/>
                             <constraint firstItem="nOb-Wp-MaI" firstAttribute="trailing" secondItem="e5N-Mj-6CG" secondAttribute="trailing" id="dkx-eB-PEa"/>
                             <constraint firstItem="nOb-Wp-MaI" firstAttribute="centerX" secondItem="e5N-Mj-6CG" secondAttribute="centerX" id="f19-My-N5k"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rOY-zY-sgO" secondAttribute="trailing" constant="29" id="hJm-Qq-rPJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rRt-Hk-R5K" secondAttribute="trailing" constant="29" id="jPC-Q6-kdI"/>
+                            <constraint firstItem="rOY-zY-sgO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="29" id="kuA-hf-HlB"/>
+                            <constraint firstItem="rRt-Hk-R5K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="29" id="uAB-Lm-gle"/>
                             <constraint firstItem="rRt-Hk-R5K" firstAttribute="centerX" secondItem="F4G-DL-Jhk" secondAttribute="centerX" id="uxb-op-89a"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="bottomText" destination="rRt-Hk-R5K" id="9pO-jF-jbv"/>
+                        <outlet property="cameraButton" destination="YFn-pb-552" id="8aV-gm-ByH"/>
                         <outlet property="cancelButton" destination="nOb-Wp-MaI" id="HER-6j-YiZ"/>
                         <outlet property="imagePickerView" destination="e5N-Mj-6CG" id="ZJa-H2-oXI"/>
                         <outlet property="navBar" destination="F4G-DL-Jhk" id="sGY-u2-CsH"/>
@@ -111,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="61.600000000000001" y="27.436281859070466"/>
+            <point key="canvasLocation" x="60.9375" y="26.953125"/>
         </scene>
     </scenes>
 </document>

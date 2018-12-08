@@ -22,13 +22,18 @@ class EdtiorViewController: UIViewController, UIImagePickerControllerDelegate,UI
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    
         setTextFields(textInput: topText, defaultText: "TOP")
         setTextFields(textInput: bottomText, defaultText: "BOTTOM")
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         subscribeToKeyboardNotifications()
-//        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+       
         if imagePickerView.image == nil {
             shareButton.isEnabled = false
         } else {
@@ -51,14 +56,15 @@ class EdtiorViewController: UIViewController, UIImagePickerControllerDelegate,UI
         textInput.defaultTextAttributes = memeTextAttributes
         textInput.delegate = self
         textInput.textAlignment = .center
+        textInput.adjustsFontSizeToFitWidth = true
     }
     
     @IBAction func pickImageFromCamera(sender: UIBarButtonItem) {
-        pickImage(sourceType: UIImagePickerController.SourceType.camera)
+        pickImage(sourceType: .camera)
     }
     
     @IBAction func pickImageFromAlbum(sender: UIBarButtonItem) {
-        pickImage(sourceType: UIImagePickerController.SourceType.photoLibrary)
+        pickImage(sourceType: .photoLibrary)
     }
     
     func pickImage(sourceType:UIImagePickerController.SourceType) {
