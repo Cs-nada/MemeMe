@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate {
+class EdtiorViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -28,12 +28,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         subscribeToKeyboardNotifications()
-        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+//        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         if imagePickerView.image == nil {
             shareButton.isEnabled = false
         } else {
             shareButton.isEnabled = true
         }
+       
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -45,29 +46,28 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
             NSAttributedString.Key(rawValue: NSAttributedString.Key.strokeColor.rawValue): UIColor.black,
             NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.white,
             NSAttributedString.Key(rawValue: NSAttributedString.Key.font.rawValue): UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSAttributedString.Key(rawValue: NSAttributedString.Key.strokeWidth.rawValue): 2.0]
+            NSAttributedString.Key(rawValue: NSAttributedString.Key.strokeWidth.rawValue): -2.0]
         textInput.text = defaultText
         textInput.defaultTextAttributes = memeTextAttributes
         textInput.delegate = self
         textInput.textAlignment = .center
     }
-    // MARK:  pick image from photo lib
-    @IBAction func pickImage(_ sender: Any) {
+    
+    @IBAction func pickImageFromCamera(sender: UIBarButtonItem) {
+        pickImage(sourceType: UIImagePickerController.SourceType.camera)
+    }
+    
+    @IBAction func pickImageFromAlbum(sender: UIBarButtonItem) {
+        pickImage(sourceType: UIImagePickerController.SourceType.photoLibrary)
+    }
+    
+    func pickImage(sourceType:UIImagePickerController.SourceType) {
         let imagePicker = UIImagePickerController()
-        imagePicker.delegate = (self as UIImagePickerControllerDelegate & UINavigationControllerDelegate)
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker,animated: true,completion: nil)
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
     }
-    // MARK:  pick image from camera
-    @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType = .camera;
-            imagePicker.allowsEditing = false
-           present(imagePicker, animated: true, completion: nil)
-        }
-    }
+
     // MARK:  after take img
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let chosenImage = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
@@ -92,7 +92,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
         let memedImage = generateMemedImage()
         let activityController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         activityController.completionWithItemsHandler = { activity, success, items, error in
-            self.save()
+            if success{
+                self.save()
+            }
         }
         present(activityController, animated: true, completion: nil)
     }
@@ -112,19 +114,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
     
     // MARK: toolbar functions
     func toolBarVisible(visible: Bool){
-        if !visible {
-            navBar.isHidden = true    // removed self
-            toolBar.isHidden = true // typo on var for toolbar // removed self
-        } else {
-            navBar.isHidden = false   // removed self
-            toolBar.isHidden = false  // removed self
-        }
+        navBar.isHidden = !visible
+        toolBar.isHidden = !visible
     }
     // MARK: cancel image selection
     @IBAction func cancelMainScreen(sender: AnyObject) {
         imagePickerView.image = nil
         topText.text = "TOP"
         bottomText.text = "BOTTOM"
+        shareButton.isEnabled = false
         dismiss(animated: true, completion: {}) // removed self
     }
     func subscribeToKeyboardNotifications() {
@@ -139,8 +137,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
      // MARK: shift the view's frame up only on bottom text field
     @objc func keyboardWillShow(_ notification:Notification) {
         if bottomText.isFirstResponder && view.frame.origin.y == 0.0{
-        view.frame.origin.y -= getKeyboardHeight(notification)
-        }
+            view.frame.origin.y = -getKeyboardHeight(notification)
+                    }
     }
     @objc func keyboardWillHide(_ notification:Notification) {
         if bottomText.isFirstResponder{
