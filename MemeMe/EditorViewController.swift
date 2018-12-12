@@ -25,6 +25,8 @@ class EdtiorViewController: UIViewController, UIImagePickerControllerDelegate,UI
     
         setTextFields(textInput: topText, defaultText: "TOP")
         setTextFields(textInput: bottomText, defaultText: "BOTTOM")
+       tabBarController?.tabBar.isHidden = true
+
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -47,6 +49,7 @@ class EdtiorViewController: UIViewController, UIImagePickerControllerDelegate,UI
     }
     // MARK:  defualt text field attributes
     func setTextFields(textInput: UITextField!, defaultText: String) {
+        
         let memeTextAttributes : [NSAttributedString.Key: Any] = [
             NSAttributedString.Key(rawValue: NSAttributedString.Key.strokeColor.rawValue): UIColor.black,
             NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.white,
@@ -96,10 +99,14 @@ class EdtiorViewController: UIViewController, UIImagePickerControllerDelegate,UI
 // MARK:  share
     @IBAction func shareAction(sender: AnyObject) {
         let memedImage = generateMemedImage()
+    
+        
         let activityController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         activityController.completionWithItemsHandler = { activity, success, items, error in
             if success{
                 self.save()
+                self.dismiss(animated: true, completion: nil)
+                self.navigationController!.popViewController(animated: true)
             }
         }
         present(activityController, animated: true, completion: nil)
@@ -129,8 +136,11 @@ class EdtiorViewController: UIViewController, UIImagePickerControllerDelegate,UI
         topText.text = "TOP"
         bottomText.text = "BOTTOM"
         shareButton.isEnabled = false
-        dismiss(animated: true, completion: {}) // removed self
+        self.dismiss(animated: true, completion: nil) // removed self
+        self.navigationController!.popViewController(animated: true)
+
     }
+    
     func subscribeToKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:))   , name: UIResponder.keyboardWillHideNotification, object: nil)
